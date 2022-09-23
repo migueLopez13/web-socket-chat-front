@@ -41,5 +41,8 @@
     "vue-tsc": "^0.40.4",
     "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   },
-  "type": "module"
+  "type": "module",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }
