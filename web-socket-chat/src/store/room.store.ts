@@ -1,25 +1,21 @@
 import { defineStore } from 'pinia'
-import roomRepository from '../repository/room.repository'
-import { FakeResponse } from '../types/fake-response.type'
-import { Room } from '../types/room.type'
+import { ref } from 'vue'
+import roomRepository from '../shared/repository/room.repository'
+import { FakeResponse } from '../shared/types/fake-response.type'
+import { Room } from '../shared/types/room.type'
 
-export const useRoomState = defineStore('room', {
-  state: () => ({
-    rooms: [] as Room[],
-  }),
+export const useRoomState = defineStore('room', () => {
 
-  getters: {
-    rooms(state) {
-      return state.rooms
-    }
-  },
+  const rooms = ref([] as Room[])
 
-  actions: {
-    async fetchRooms() {
-      this.rooms = (await roomRepository.get() as FakeResponse).data as Room[]
-    },
-    addRoom(room: Room) {
-      this.rooms.push(room)
-    }
-  },
+  async function fetchRooms() {
+    rooms.value = (await roomRepository.get() as FakeResponse).data as Room[]
+  }
+
+  function addRoom(room: Room) {
+    rooms.value = [...rooms.value, room]
+  }
+
+  return { rooms, fetchRooms, addRoom }
+
 })

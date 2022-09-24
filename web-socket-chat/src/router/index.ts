@@ -1,8 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Welcome from '@/components/welcome.vue'
+import Welcome from '@/shared/components/welcome.vue'
 
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "Welcome",
+    component: Welcome,
+  },
   {
     path: "/",
     name: "Welcome",

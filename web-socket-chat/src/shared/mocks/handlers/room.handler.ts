@@ -7,6 +7,7 @@ export default [
         createdAt: Date(),
         id: 'as',
         admin: "example1@gmail.com",
+        name: "Room mockeada 1",
         members: [
           "example1@gmail.com",
           "example2@gmail.com",
@@ -25,6 +26,7 @@ export default [
         createdAt: Date(),
         id: 'am',
         admin: "example2@gmail.com",
+        name: "Room mockeada 2",
         members: [
           "example4@gmail.com",
           "example2@gmail.com",

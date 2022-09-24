@@ -1,18 +1,14 @@
 class HttpClient {
   myHeaders = new Headers()
 
-  constructor(private baseUrl: RequestInfo, private token = "") {
-
-  }
+  constructor(private baseUrl: RequestInfo, private token = "") { }
 
   setHeaders(name: string, value: string) {
     this.myHeaders.set(name, value)
   }
 
   async get(source: string, id = "") {
-    const url = id
-      ? `${this.baseUrl}${source}/${id}`
-      : `${this.baseUrl}${source}`
+    const url = id ? `${this.baseUrl}${source}/${id}` : `${this.baseUrl}${source}`
 
     const response = await fetch(url, {
       method: "GET",

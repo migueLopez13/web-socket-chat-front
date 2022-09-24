@@ -10,24 +10,40 @@
         <h4>{{ text }}</h4>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="6">
+        <h3>{{ "Salas:" }}</h3>
+        <article v-for="room in rooms" :key="room.id">
+          {{ room.name }}
+        </article>
+      </v-col>
+      <v-col cols="6">
+        <h3>{{ "Usuarios:" }}</h3>
+        <article v-for="user in users" :key="user.email">
+          {{ user.name }}
+        </article>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue"
 import { FakeResponse } from "../types/fake-response.type"
-import { useRoomState } from "../store/room.store"
-import { useUserState } from "../store/user.store"
+import { useRoomState } from "../../store/room.store"
+import { useUserState } from "../../store/user.store"
 import messageRepository from "../repository/message.repository"
+import { storeToRefs } from "pinia"
 
 const roomsStore = useRoomState()
 const userStore = useUserState()
 const text = ref()
+const { rooms } = storeToRefs(roomsStore)
+const { users } = storeToRefs(userStore)
 
 onMounted(async () => {
-  text.value = ((await messageRepository.get("m1")) as FakeResponse).message
-
   await roomsStore.fetchRooms()
   await userStore.fetchUsers()
+  text.value = ((await messageRepository.get("m1")) as FakeResponse).message
 })
 </script>

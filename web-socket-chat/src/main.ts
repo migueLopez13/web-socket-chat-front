@@ -4,11 +4,11 @@ import App from "./App.vue"
 import vuetify from "./plugins/vuetify"
 import { loadFonts } from "./plugins/webfontloader"
 import router from "./router"
-import { worker } from "./mocks/browser"
+import { worker } from "./shared/mocks/browser"
 
 loadFonts()
 
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.VITE_MS === "mock") {
   worker.start()
 }
 
