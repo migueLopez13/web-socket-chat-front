@@ -6,5 +6,6 @@ export type Room = {
   admin: string,
   name: string,
   members: string[],
-  messages: Message[]
+  messages: Message[],
+  backgroundColor: string
 }

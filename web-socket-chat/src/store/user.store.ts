@@ -1,23 +1,26 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import userRepository from '../shared/repository/user.repository'
+import { reactive, ref } from 'vue'
+import userRepository from '../shared/api/user.repository'
 import { FakeResponse } from '../shared/types/fake-response.type'
 import { User } from '../shared/types/user.type'
 
-type CreateMutable<T> = { -readonly [P in keyof T]: CreateMutable<T[P]> }
 
 export const useUserState = defineStore('user', () => {
 
   const users = ref([] as User[])
 
-  async function fetchUsers() {
-    users.value = (await userRepository.get() as FakeResponse).data as User[]
-  }
+  const getters = {}
 
-  function addUser(user: User) {
-    users.value = [...users.value, user]
-  }
+  const actions = reactive({
+    fetchUsers: async () => {
+      users.value = (await userRepository.get() as FakeResponse).data as User[]
+    },
+    addUser: (user: User) => {
+      users.value = [...users.value, user]
+    }
+  })
 
-  return { users, fetchUsers, addUser }
+
+  return { users, getters, actions }
 
 })

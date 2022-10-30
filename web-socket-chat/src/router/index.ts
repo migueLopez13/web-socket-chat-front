@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Welcome from '@/shared/components/welcome.vue'
+import { roomRoutes } from "../modules/room/router";
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -9,9 +10,8 @@ const routes: Array<RouteRecordRaw> = [
     component: Welcome,
   },
   {
-    path: "/",
-    name: "Welcome",
-    component: Welcome,
+    path: "/room",
+    children: roomRoutes
   }
 ];
 

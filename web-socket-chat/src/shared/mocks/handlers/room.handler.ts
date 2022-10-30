@@ -20,7 +20,8 @@ export default [
             owner: "example2@gmail.com",
             text: "hola grupo 1"
           }
-        ]
+        ],
+        backgroundColor: "#34cceb"
       },
       {
         createdAt: Date(),
@@ -39,7 +40,8 @@ export default [
             owner: "example2@gmail.com",
             text: "hola grupo 2"
           }
-        ]
+        ],
+        backgroundColor: "#eb3492"
       },
     ]
     if (req.params.id) {
